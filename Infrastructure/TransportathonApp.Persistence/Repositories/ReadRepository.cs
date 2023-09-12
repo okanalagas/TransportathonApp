@@ -37,11 +37,11 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
             query = query.AsNoTracking();
         return await query.FirstOrDefaultAsync(expression);
     }
-    public async Task<T> GetByIdAsync(string id, bool tracking = true)
+    public async Task<T> GetByIdAsync(int id, bool tracking = true)
     {
         var query = Table.AsQueryable();
         if (!tracking)
             query = query.AsNoTracking();
-        return await query.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+        return await query.FirstOrDefaultAsync(data => data.Id == id);
     }
 }

@@ -35,9 +35,9 @@ public class WriteRepository<T> : IWriteRepository<T> where T : BaseEntity
         return entityEntry.State == EntityState.Deleted;
     }
 
-    public async Task<bool> RemoveAsync(string id)
+    public async Task<bool> RemoveAsync(int id)
     {
-        T entity = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+        T entity = await Table.FirstOrDefaultAsync(data => data.Id == id);
         return Remove(entity);
     }
 

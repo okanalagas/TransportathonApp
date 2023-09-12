@@ -4,9 +4,12 @@ namespace TransportathonApp.Domain.Entities;
 
 public class Company : BaseEntity
 {
-
-    // Other company-related properties can be added as needed.
-
+    public string Name { get; set; }
+    public int CompanyExecutiveId { get; set; }
+    public CompanyExecutive CompanyExecutive { get; set; }
     public ICollection<Vehicle> Vehicles { get; set; }
     public ICollection<Driver> Drivers { get; set; }
+    public ICollection<TransportationTeam> TransportationTeams { get; set; }
+    public ICollection<TransportationOffer> TransportationOffers { get; set; }
+    public ICollection<Reservation> Reservations { get; set; }
 }
