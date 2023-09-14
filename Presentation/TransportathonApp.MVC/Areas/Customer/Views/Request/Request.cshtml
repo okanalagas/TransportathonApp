@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "Talepler";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+@section Styles{
+    <link href="~/css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="~/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>E-commerce orders</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>E-commerce</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Orders</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="ibox-content m-b-sm border-bottom">
+        <h3>Yeni Talep Oluştur</h3>
+        <hr />
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="product_name">Nereden</label>
+                    <input type="text" id="" value="" placeholder="Adres..." class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="price">Nereye</label>
+                    <input type="text" id="" value="" placeholder="Adres..." class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="date_modified">Tarih</label>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="" type="text" class="form-control" value="03/06/2014">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label">Taşıma Tipi</label>
+                    <select id="status" class="form-control">
+                        <option value="1" selected>Evden Eve</option>
+                        <option value="0">Ofis</option>
+                        <option value="2">Ağır Eşya</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label">Ağırlık</label>
+                    <input type="text" id="quantity"  value="" placeholder="Kg" class="form-control">
+                </div>
+            </div> 
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label">Not</label>
+                    <input type="text" id="quantity"  value="" placeholder="Not..." class="form-control">
+                </div>
+            </div>   
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-12">  
+                <div class="form-group">
+                    <button class="btn btn-primary btn-sm float-right" type="submit">Talep Oluştur</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Taleplerim</h3>
+                    <hr />
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th data-hide="phone">Customer</th>
+                                <th data-hide="phone">Amount</th>
+                                <th data-hide="phone">Date added</th>
+                                <th data-hide="phone,tablet">Date modified</th>
+                                <th data-hide="phone">Status</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    3214
+                                </td>
+                                <td>
+                                    Customer example
+                                </td>
+                                <td>
+                                    $500.00
+                                </td>
+                                <td>
+                                    03/04/2015
+                                </td>
+                                <td>
+                                    03/05/2015
+                                </td>
+                                <td>
+                                    <span class="label label-primary">Pending</span>
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs">View</button>
+                                        <button class="btn-white btn btn-xs">Edit</button>
+                                        <button class="btn-white btn btn-xs">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>                            
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <!-- FooTable -->
+    <script src="~/js/plugins/footable/footable.all.min.js"></script>
+
+    <script src="~/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('.footable').footable();
+
+            $('#date_added').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+            $('#date_modified').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+        });
+
+    </script>
+}

@@ -17,6 +17,10 @@ public static class ServiceRegistration
 
         services.AddScoped<ICompanyReadRepository, CompanyReadRepository>();
         services.AddScoped<ICompanyWriteRepository, CompanyWriteRepository>();
+        services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+        services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+        services.AddScoped<ICompanyExecutiveReadRepository, CompanyExecutiveReadRepository>();
+        services.AddScoped<ICompanyExecutiveWriteRepository, CompanyExecutiveWriteRepository>();
         services.AddScoped<IDriverReadRepository, DriverReadRepository>();
         services.AddScoped<IDriverWriteRepository, DriverWriteRepository>();
         services.AddScoped<IMessageReadRepository, MessageReadRepository>();

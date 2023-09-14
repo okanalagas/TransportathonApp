@@ -1,7 +1,9 @@
+using TransportathonApp.Application;
 using TransportathonApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices();
 
 builder.Services.AddControllers();

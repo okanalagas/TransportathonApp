@@ -5,21 +5,21 @@ VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{740EF7A9-40CC-4E53-9009-88DF58042E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.Application", "Core\TransportathonApp.Application\TransportathonApp.Application.csproj", "{B0092F84-B71F-476C-ADC2-6BDA60E3CECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonApp.Application", "Core\TransportathonApp.Application\TransportathonApp.Application.csproj", "{B0092F84-B71F-476C-ADC2-6BDA60E3CECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.Domain", "Core\TransportathonApp.Domain\TransportathonApp.Domain.csproj", "{CEF311D9-2DDE-402F-AF37-E64149BC3C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonApp.Domain", "Core\TransportathonApp.Domain\TransportathonApp.Domain.csproj", "{CEF311D9-2DDE-402F-AF37-E64149BC3C8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CE35FDC9-F26A-4D5F-9F1B-42DF82108BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.Infrastructure", "Infrastructure\TransportathonApp.Infrastructure\TransportathonApp.Infrastructure.csproj", "{39CD6ABF-8A30-4DDD-9096-D70A01779026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonApp.Infrastructure", "Infrastructure\TransportathonApp.Infrastructure\TransportathonApp.Infrastructure.csproj", "{39CD6ABF-8A30-4DDD-9096-D70A01779026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.Persistence", "Infrastructure\TransportathonApp.Persistence\TransportathonApp.Persistence.csproj", "{0F5311CA-B353-4648-820D-04CF73AAA345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonApp.Persistence", "Infrastructure\TransportathonApp.Persistence\TransportathonApp.Persistence.csproj", "{0F5311CA-B353-4648-820D-04CF73AAA345}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{574ECDFB-6A93-4599-A55C-6DB70A4CE693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.API", "Presentation\TransportathonApp.API\TransportathonApp.API.csproj", "{EA45866B-0984-4618-93D1-DD565A2E45D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonApp.API", "Presentation\TransportathonApp.API\TransportathonApp.API.csproj", "{EA45866B-0984-4618-93D1-DD565A2E45D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.MVC", "Presentation\TransportathonApp.MVC\TransportathonApp.MVC.csproj", "{340C9183-17E1-4EAC-99AB-A5EE5549AA2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonApp.MVC", "Presentation\TransportathonApp.MVC\TransportathonApp.MVC.csproj", "{6545108A-39C2-4A35-9B6C-02D61FF747C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{EA45866B-0984-4618-93D1-DD565A2E45D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA45866B-0984-4618-93D1-DD565A2E45D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA45866B-0984-4618-93D1-DD565A2E45D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{340C9183-17E1-4EAC-99AB-A5EE5549AA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{340C9183-17E1-4EAC-99AB-A5EE5549AA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{340C9183-17E1-4EAC-99AB-A5EE5549AA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{340C9183-17E1-4EAC-99AB-A5EE5549AA2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6545108A-39C2-4A35-9B6C-02D61FF747C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6545108A-39C2-4A35-9B6C-02D61FF747C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6545108A-39C2-4A35-9B6C-02D61FF747C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6545108A-39C2-4A35-9B6C-02D61FF747C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,7 +61,7 @@ Global
 		{39CD6ABF-8A30-4DDD-9096-D70A01779026} = {CE35FDC9-F26A-4D5F-9F1B-42DF82108BDA}
 		{0F5311CA-B353-4648-820D-04CF73AAA345} = {CE35FDC9-F26A-4D5F-9F1B-42DF82108BDA}
 		{EA45866B-0984-4618-93D1-DD565A2E45D5} = {574ECDFB-6A93-4599-A55C-6DB70A4CE693}
-		{340C9183-17E1-4EAC-99AB-A5EE5549AA2C} = {574ECDFB-6A93-4599-A55C-6DB70A4CE693}
+		{6545108A-39C2-4A35-9B6C-02D61FF747C1} = {574ECDFB-6A93-4599-A55C-6DB70A4CE693}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EB0E632-3DD3-4845-B898-BBE98A328AE3}
