@@ -15,4 +15,9 @@
     <ProjectReference Include="..\TransportathonApp.Domain\TransportathonApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Account\Login\" />
+    <Folder Include="Commands\Account\ForgotPassword\" />
+  </ItemGroup>
+
 </Project>

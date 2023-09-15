@@ -1,7 +1,13 @@
-var builder = WebApplication.CreateBuilder(args);
+using TransportathonApp.Application;
+using TransportathonApp.Persistence;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddApplicationServices();
+builder.Services.AddPersistenceServices();
 
 var app = builder.Build();
 
@@ -18,6 +24,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

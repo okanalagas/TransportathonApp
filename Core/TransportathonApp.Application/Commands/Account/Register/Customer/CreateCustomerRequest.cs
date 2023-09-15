@@ -1,6 +1,8 @@
-﻿namespace TransportathonApp.Application.Commands.Account;
+﻿using MediatR;
 
-public class CreateCustomerDto
+namespace TransportathonApp.Application.Commands.Account.Register;
+
+public class CreateCustomerRequest : IRequest<CreateCustomerResponse>
 {
     public string Email { get; set; }
     public string Password { get; set; }

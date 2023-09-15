@@ -1,6 +1,8 @@
-﻿namespace TransportathonApp.Application.Commands.Account;
+﻿using MediatR;
 
-public class CreateCompanyExecutiveDto
+namespace TransportathonApp.Application.Commands.Account.Register;
+
+public class CreateCompanyExecutiveRequest : IRequest<CreateCompanyExecutiveResponse>
 {
     public string Email { get; set; }
     public string Password { get; set; }

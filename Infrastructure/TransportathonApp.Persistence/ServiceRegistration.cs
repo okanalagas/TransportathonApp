@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TransportathonApp.Application.Repositories;
 using TransportathonApp.Domain.Entities.Identity;
@@ -13,7 +15,31 @@ public static class ServiceRegistration
     {
         services.AddDbContext<TransportathonAppDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
 
-        services.AddIdentity<AppUser, AppUserRole>().AddEntityFrameworkStores<TransportathonAppDbContext>();
+        services.AddIdentity<AppUser, AppUserRole>(options =>
+        {
+            options.Lockout.MaxFailedAccessAttempts = 3;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+            options.Password.RequiredUniqueChars = 0;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequiredLength = 3;
+        }).AddEntityFrameworkStores<TransportathonAppDbContext>().AddDefaultTokenProviders();
+
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.LoginPath = "/Login";
+            options.AccessDeniedPath = "/";
+            options.SlidingExpiration = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+            options.Cookie = new CookieBuilder
+            {
+                HttpOnly = false,
+                SameSite = SameSiteMode.Lax,
+                SecurePolicy = CookieSecurePolicy.Always
+            };
+        });
 
         services.AddScoped<ICompanyReadRepository, CompanyReadRepository>();
         services.AddScoped<ICompanyWriteRepository, CompanyWriteRepository>();

@@ -1,46 +1,42 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Kayıt Ol";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 @section Styles{
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/css/plugins/iCheck/custom.css" rel="stylesheet">
 }
 
 <div class="middle-box text-center loginscreen   animated fadeInDown">
-    <div>        
+    <div>
         <h3>TransportathonApp.MVC'a Kayıt Olun</h3>
         <p>Create account to see it in action.</p>
-        <form class="m-t" role="form" action="login.html">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Ad" required="">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Soyad" required="">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" required="">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="">
-            </div>
-            <div class="form-group">
-                <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
-            <p class="text-muted text-center"><small>Already have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block" asp-controller="Login" asp-action="Index">Login</a>
-        </form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Ad" required="" id="name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Soyad" required="" id="surname">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" required="" id="email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Şifre" required="" id="password">
+        </div>
+        <div class="form-group">
+            <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+        </div>
+        <button type="button" class="btn btn-primary block full-width m-b" onclick="register()">Register</button>
+        <p class="text-muted text-center"><small>Already have an account?</small></p>
+        <a class="btn btn-sm btn-white btn-block" asp-controller="Login" asp-action="Index">Login</a>
         <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
     </div>
 </div>
 
 @section Scripts{
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+
     <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/js/plugins/iCheck/icheck.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('.i-checks').iCheck({
@@ -48,5 +44,20 @@
                 radioClass: 'iradio_square-green',
             });
         });
+
+        async function register() {
+
+            let customer = {
+                firstName: $("#name").val(),
+                lastName: $("#surname").val(),
+                email: $("#email").val(),
+                password: $("#password").val()
+            };
+
+            var response = await fetchService("Register/CreateCustomer", customer)
+
+            console.log(response);
+        }
+
     </script>
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TransportathonApp.Application.Commands.Account;
+using TransportathonApp.Application.Commands.Account.Register;
 using TransportathonApp.Application.Repositories;
 using TransportathonApp.Domain.Entities;
 using TransportathonApp.Domain.Entities.Identity;
@@ -25,7 +25,7 @@ public class RegisterController : ControllerBase
 
     [HttpPost]
     [Route("CreateCustomer")]
-    public async Task<IActionResult> CreateCustomer(CreateCustomerDto createCustomerDTO)
+    public async Task<IActionResult> CreateCustomer(CreateCustomerRequest createCustomerDTO)
     {
         if (ModelState.IsValid)
         {
@@ -62,7 +62,7 @@ public class RegisterController : ControllerBase
 
     [HttpPost]
     [Route("CreateCompanyExecutive")]
-    public async Task<IActionResult> CreateCompanyExecutive(CreateCompanyExecutiveDto createCompanyExecutiveDto)
+    public async Task<IActionResult> CreateCompanyExecutive(CreateCompanyExecutiveRequest createCompanyExecutiveDto)
     {
         if (ModelState.IsValid)
         {

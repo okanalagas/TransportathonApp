@@ -48,11 +48,11 @@
 
 @section Scripts{
     <script>
-        
+
         async function login() {
             let username = $("#username").val();
             let password = $("#password").val();
-            var response = await fetchService("Login/Login", { Username:username , Password:password  })
+            var response = await fetchService("Login/Login", { Username: username, Password: password })
             console.log(response);
         }
 
