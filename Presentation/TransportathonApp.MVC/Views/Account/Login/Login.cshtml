@@ -24,7 +24,7 @@
         <div class="col-md-6">
             <div class="ibox-content">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Username" required="" id="username">
+                    <input type="email" class="form-control" placeholder="E-mail" required="" id="email">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" required="" id="password">
@@ -50,10 +50,28 @@
     <script>
 
         async function login() {
-            let username = $("#username").val();
+
+            let email = $("#email").val();
             let password = $("#password").val();
-            var response = await fetchService("Login/Login", { Username: username, Password: password })
-            console.log(response);
+            let isPersistent = true;
+
+            let response = await fetchService("Login/Login", { Email: email, Password: password, IsPersistent: isPersistent })
+
+            if (response === "Kullanıcı adı veya şifre hatalı!") {
+                swal({
+                    title: "Giriş Başarısız!",
+                    text: response,
+                    type: "error"
+                });
+                return;
+            }
+
+            // let URL = window.location.href;
+
+            // if (!(URL.toLowerCase().includes("customer") || URL.toLowerCase().includes("company")))
+            URL = window.location.origin + `/${response.path}/Home`;
+
+            window.open(URL, "_self");
         }
 
     </script>

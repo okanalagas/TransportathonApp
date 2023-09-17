@@ -18,7 +18,7 @@ public static class ServiceRegistration
         services.AddIdentity<AppUser, AppUserRole>(options =>
         {
             options.Lockout.MaxFailedAccessAttempts = 3;
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             options.Password.RequiredUniqueChars = 0;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireDigit = false;
@@ -30,7 +30,7 @@ public static class ServiceRegistration
         services.ConfigureApplicationCookie(options =>
         {
             options.LoginPath = "/Login";
-            options.AccessDeniedPath = "/";
+            options.AccessDeniedPath = "/AccessDenied";
             options.SlidingExpiration = true;
             options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
             options.Cookie = new CookieBuilder
@@ -57,6 +57,8 @@ public static class ServiceRegistration
         services.AddScoped<IReviewWriteRepository, ReviewWriteRepository>();
         services.AddScoped<ITransportationRequestReadRepository, TransportationRequestReadRepository>();
         services.AddScoped<ITransportationRequestWriteRepository, TransportationRequestWriteRepository>();
+        services.AddScoped<ITransportationOfferReadRepository, TransportationOfferReadRepository>();
+        services.AddScoped<ITransportationOfferWriteRepository, TransportationOfferWriteRepository>();
         services.AddScoped<IVehicleReadRepository, VehicleReadRepository>();
         services.AddScoped<IVehicleWriteRepository, VehicleWriteRepository>();
     }

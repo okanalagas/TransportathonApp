@@ -12,4 +12,5 @@ public class TransportationOffer : BaseEntity
     public virtual Driver Driver { get; set; }
     public int TransportationTeamId { get; set; }
     public virtual TransportationTeam TransportationTeam { get; set; }
+    public double Price { get; set; }
 }

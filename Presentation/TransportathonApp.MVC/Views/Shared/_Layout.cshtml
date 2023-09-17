@@ -36,7 +36,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="nav-link" href="#">Anasayfa</a></li>
                         <li><a class="nav-link" href="#">SÜREÇ</a></li>
-                        <li><a class="nav-link" href="#">İLETİŞİM</a></li>
+                        @if (User.Identity.Name==null)
+                        {
+                            <li><a class="nav-link" asp-controller="Login" asp-action="Index">GİRİŞ YAP</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="nav-link" asp-controller="Login" asp-action="Index">Hesabım</a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -51,9 +58,9 @@
             <div class="carousel-item active">
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>We create meaningful <br /> interfaces that inspire.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        <h1>NAKLİYE HİZMETİNE Mİ İHTİYAÇ DUYUYORSUNUZ ?</h1>
+                        <p>HEMEN BİR KULLANICI HESABI OLUŞTURUN VE TALEPLERİNİZİ YÖNETİN</p>
+                        <p><a class="btn btn-lg btn-primary" asp-controller="Register" asp-action="Index" role="button">HESAP OLUŞTUR</a></p>
                     </div>
                 </div>
                 <!-- Set background for slide in css -->
@@ -62,9 +69,9 @@
             <div class="carousel-item">
                 <div class="container">
                     <div class="carousel-caption blank">
-                        <h1>We create meaningful <br /> interfaces that inspire.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        <h1>NAKLİYE HİZMETİ Mİ SUNUYORSUNUZ ? </h1>
+                        <p>HEMEN BİR ŞİRKET HESABI OLUŞTURUN VE TALEPLERE TEKLİF VERİN</p>
+                        <p><a class="btn btn-lg btn-primary" asp-controller="Register" asp-action="Index" role="button">HESAP OLUŞTUR</a></p>
                     </div>
                 </div>
                 <!-- Set background for slide in css -->
@@ -82,22 +89,23 @@
     </div>
 
     @RenderBody()
+
     <section id="contact" class="gray-section contact">
         <div class="container">
             <div class="row m-b-lg">
                 <div class="col-lg-12 text-center">
                     <div class="navy-line"></div>
-                    <h1>Contact Us</h1>
+                    <h1>İletişim</h1>
                     <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
                 </div>
             </div>
             <div class="row m-b-lg justify-content-center">
                 <div class="col-lg-3 ">
                     <address>
-                        <strong><span class="navy">Company name, Inc.</span></strong><br />
-                        795 Folsom Ave, Suite 600<br />
-                        San Francisco, CA 94107<br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                        <strong><span class="navy">TransportApp.</span></strong><br />
+                        Beşiktaş<br />
+                        İstanbul<br />
+                        <abbr title="Phone">Tel:</abbr> (123) 4567890
                     </address>
                 </div>
                 <div class="col-lg-4">
@@ -108,9 +116,9 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
+                    <a href="mailto:test@email.com" class="btn btn-primary">E-posta</a>
                     <p class="m-t-sm">
-                        Or follow us on social platform
+                        Sosyal medyada bizi takip edebilirsiniz
                     </p>
                     <ul class="list-inline social-icon">
                         <li class="list-inline-item">
@@ -132,6 +140,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Mainly scripts -->
     <script src="~/js/jquery-3.1.1.min.js"></script>

@@ -1,8 +1,207 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Anasayfa";
     Layout = "~/Views/Shared/CompanyLayout.cshtml";
 }
 
-<h1>Index</h1>
+@section Styles{
+    <link href="~/css/plugins/footable/footable.core.css" rel="stylesheet">
+}
 
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Talepler</h3>
+                    <hr />
+                    <table id="requestTable" class="footable table table-stripped toggle-arrow-tiny" data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th data-toggle="true">Nakliye Tipi</th>
+                                <th data-hide="phone">Nakliye Tarihi</th>
+                                <th data-hide="all">Not</th>
+                                <th data-hide="phone">Nereden</th>
+                                <th data-hide="phone">Nereye</th>
+                                <th data-hide="phone,tablet">Ağırlık</th>
+                                <th class="text-right" data-sort-ignore="true">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="viewRequestModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated flipInY">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Talep Bilgileri</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="requestToOfferId">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" onclick="showMakeOfferFromRequest()">Teklif Ver</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="makeOfferModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated flipInY">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Teklif Oluştur</h4>
+                <small class="font-bold">Gerekli bilgileri girip teklifinizi sunun...</small>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <label>Nakliye Aracı(nakliye tipine göre otomatik gelebilir)</label>
+                        <select id="vehicle" class="form-control" required>
+                            <option value="0" selected>Lütfen araç seçiniz*</option>
+                            <option value="1">Kamyon1</option>
+                            <option value="2">Kamyon2</option>
+                            <option value="3">Tır1</option>
+                            <option value="4">Tır2</option>
+                            <option value="5">Kamyonet1</option>
+                            <option value="6">Kamyonet2</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>Şoför(ehliyeti araca uygun olanlar)</label>
+                        <select id="driver" class="form-control" required>
+                            <option value="0" selected>Lütfen şoför seçiniz*</option>
+                            <option value="1">Şoför1</option>
+                            <option value="2">Şoför2</option>
+                            <option value="3">Şoför3</option>
+                            <option value="4">Şoför4</option>
+                            <option value="5">Şoför5</option>
+                            <option value="6">Şoför6</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>Nakliye Ekibi(Müsait olanlar)</label>
+                        <select id="team" class="form-control" required>
+                            <option value="0" selected>Lütfen nakliye ekibi seçiniz*</option>
+                            <option value="1">Ekip1</option>
+                            <option value="2">Ekip2</option>
+                            <option value="3">Ekip3</option>
+                            <option value="4">Ekip4</option>
+                            <option value="5">Ekip5</option>
+                            <option value="6">Ekip6</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>Fiyat</label>
+                        <div class="input-group m-b">
+                            <div class="input-group-prepend">
+                                <span class="input-group-addon">$</span>
+                            </div>
+                            <input id="price" type="number" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <button type="button" class="btn btn-primary" onclick="helpForPrice()">Fiyat Hesaplamama Yardım Et</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" onclick="makeOffer()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <!-- FooTable -->
+    <script src="~/js/plugins/footable/footable.all.min.js"></script>
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function () {
+
+
+
+        });
+
+        ListRequests();
+
+        async function ListRequests() {
+            let response = await fetchService("Company/Request/Get", {})
+            DrawTable(response.transportationRequests);
+        }
+
+        function DrawTable(data) {
+            var table = $('#requestTable').footable();
+            $.each(data, function (index, item) {
+                var row = '<tr>' +
+                    '<td>' + item.type + '</td>' +
+                    '<td>' + item.transportDate + '</td>' +
+                    '<td>' + item.notes + '</td>' +
+                    '<td>' + item.fromAddress + '</td>' +
+                    '<td>' + item.toAddress + '</td>' +
+                    '<td>' + item.weight + '</td>' +
+                    '<td class="text-right">' +
+                    '<div class="btn-group">' +
+                    '<button class="btn-primary btn btn-xs mr-1" onclick="showRequestDetails(' + item.id + ')">Görüntüle</button>' +
+                    '<button class="btn-secondary btn btn-xs" data-toggle="modal"  onclick="showMakeOfferModal(' + item.id + ')">Teklif Ver</button>'
+                    + '</div>' +
+                    '</td>' +
+                    '</tr>';
+                table.append(row);
+            });
+            table.trigger('footable_initialize');
+        }
+
+        function showRequestDetails(id) {
+            $("#viewRequestModal").modal("show");
+            $("#requestToOfferId").val(id)
+        }
+
+        function showMakeOfferModal(id) {
+            $("#makeOfferModal").modal("show");
+
+        }
+        function showMakeOfferFromRequest() {
+            $("#viewRequestModal").modal("hide");
+            $("#makeOfferModal").modal("show");
+            console.log($("#requestToOfferId").val());
+        }
+        async function makeOffer() {
+            let response = await fetchService("Company/Offer/Create", {
+                UserMail: $("#userName").val(),
+                VehicleId: Number($("#vehicle").val()),
+                DriverId: Number($("#driver").val()),
+                TeamId: Number($("#team").val()),
+                Price: Number($("#price").val())
+            })
+        }
+
+    </script>
+}

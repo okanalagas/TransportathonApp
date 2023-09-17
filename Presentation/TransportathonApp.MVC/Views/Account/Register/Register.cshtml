@@ -22,13 +22,24 @@
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Şifre" required="" id="password">
         </div>
-        <div class="form-group">
-            <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+        <div class="form-group" id="companyDiv" style="display:none;">
+            <input type="password" class="form-control" placeholder="Şirket Adı" id="company">
         </div>
-        <button type="button" class="btn btn-primary block full-width m-b" onclick="register()">Register</button>
-        <p class="text-muted text-center"><small>Already have an account?</small></p>
-        <a class="btn btn-sm btn-white btn-block" asp-controller="Login" asp-action="Index">Login</a>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        <div class="form-group">
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" id="isCompany">
+                    <i></i> Nakliye hizmeti sunmak istiyorum.
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Şartları kabul ediyorum. </label></div>
+        </div>
+        <button type="button" class="btn btn-primary block full-width m-b" onclick="register()">Kayıt Ol</button>
+        <p class="text-muted text-center"><small>Zaten hesabınız var mı?</small></p>
+        <a class="btn btn-sm btn-white btn-block" asp-controller="Login" asp-action="Index">Giriş Yap</a>
+        <p class="m-t"> <small>TransportAPP &copy; 2014</small> </p>
     </div>
 </div>
 
@@ -44,20 +55,36 @@
                 radioClass: 'iradio_square-green',
             });
         });
+        var companyDiv = document.getElementById("companyDiv");
+
+        $('#isCompany').on('ifChecked', function (event) {
+            companyDiv.style.display = "block";
+        });
+        $('#isCompany').on('ifUnchecked', function (event) {
+            companyDiv.style.display = "none";
+        });
 
         async function register() {
+            if ($('#isCompany').prop('checked')) {
+                let company = {
+                    firstName: $("#name").val(),
+                    lastName: $("#surname").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                    companyName: $("#company").val()
+                };
 
-            let customer = {
-                firstName: $("#name").val(),
-                lastName: $("#surname").val(),
-                email: $("#email").val(),
-                password: $("#password").val()
-            };
+                var response = await fetchService("Register/CreateCompanyExecutive", company)
+            } else {
+                let customer = {
+                    firstName: $("#name").val(),
+                    lastName: $("#surname").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val()
+                };
 
-            var response = await fetchService("Register/CreateCustomer", customer)
-
-            console.log(response);
-        }
-
+                var response = await fetchService("Register/CreateCustomer", customer)
+            }
+        }      
     </script>
 }

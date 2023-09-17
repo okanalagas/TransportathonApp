@@ -10,11 +10,13 @@ public class CreateCompanyExecutiveHandler : IRequestHandler<CreateCompanyExecut
 {
     private readonly ICompanyExecutiveWriteRepository _companyExecutiveWriteRepository;
     private readonly UserManager<AppUser> _userManager;
+    private readonly ICompanyWriteRepository _companyWriteRepository;
 
-    public CreateCompanyExecutiveHandler(ICompanyExecutiveWriteRepository companyExecutiveWriteRepository, UserManager<AppUser> userManager)
+    public CreateCompanyExecutiveHandler(ICompanyExecutiveWriteRepository companyExecutiveWriteRepository, UserManager<AppUser> userManager, ICompanyWriteRepository companyWriteRepository)
     {
         _companyExecutiveWriteRepository = companyExecutiveWriteRepository;
         _userManager = userManager;
+        _companyWriteRepository = companyWriteRepository;
     }
 
     public async Task<CreateCompanyExecutiveResponse> Handle(CreateCompanyExecutiveRequest request, CancellationToken cancellationToken)
@@ -22,21 +24,32 @@ public class CreateCompanyExecutiveHandler : IRequestHandler<CreateCompanyExecut
         AppUser user = new()
         {
             UserName = request.Email,
-            Email = request.Email,
-            PhoneNumber = request.PhoneNumber
+            Email = request.Email
         };
         var result = await _userManager.CreateAsync(user, request.Password);
+
+        Company company = new()
+        {
+            CompanyExecutiveId = user.Id,
+            Name = request.CompanyName
+        };
 
         CompanyExecutive companyExecutive = new()
         {
             FirstName = request.FirstName,
             LastName = request.LastName,
-            Id = user.Id
+            Id = user.Id,
+            CompanyId = user.Id
         };
-        await _companyExecutiveWriteRepository.AddAsync(companyExecutive);
-        await _companyExecutiveWriteRepository.SaveAsync();
+
+
         if (result.Succeeded)
+        {
+            await _companyWriteRepository.AddAsync(company);
+            await _companyExecutiveWriteRepository.AddAsync(companyExecutive);
+            await _companyExecutiveWriteRepository.SaveAsync();
             return new();
+        }
         else
             return new();
     }

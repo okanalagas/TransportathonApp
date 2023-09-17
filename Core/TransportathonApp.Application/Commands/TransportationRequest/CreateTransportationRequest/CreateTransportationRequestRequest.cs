@@ -8,8 +8,8 @@ public class CreateTransportationRequestRequest : IRequest<CreateTransportationR
     public TransportationRequestType Type { get; set; }
     public string FromAddress { get; set; }
     public string ToAddress { get; set; }
-    public DateTime TransportDate { get; set; }
+    public string TransportDate { get; set; }
     public double? Weight { get; set; }
     public string Notes { get; set; }
-    public int AppUserId { get; set; }
+    public string UserMail { get; set; }
 }
